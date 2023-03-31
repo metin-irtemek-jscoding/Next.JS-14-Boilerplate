@@ -13,6 +13,7 @@ export const Wrapper = styled.div`
 
 export const Title = styled.div`
   color: ${theme.color.blue700};
+  font-family: 'MyFont2';
   font-size: 28px;
   font-weight: bold;
   margin-bottom: 20px;
