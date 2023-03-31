@@ -1,0 +1,10 @@
+@font-face {
+  font-family: MyFont1;
+  src: local(trebuc),
+  url(./trebuc.ttf) format("truetype");
+}
+@font-face {
+  font-family: MyFont2;
+  src: local(SourceSansPro-Black),
+  url(.//SourceSansPro-Black.ttf) format("truetype");
+}

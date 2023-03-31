@@ -1,0 +1,131 @@
+{
+  "root": true,
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "globals": {
+    "jest": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2020
+  },
+  "ignorePatterns": [
+    "node_modules/**/*",
+    ".next/**/*",
+    ".out/**/*",
+    "!.prettierrc",
+    "storybook-static/**/*",
+    "scripts/**/*",
+    "data/**/*",
+    "public/**/*",
+    ".storybook/**/*",
+    ".swc/**/*"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "plugin:storybook/recommended",
+    "next/core-web-vitals"
+  ],
+  "overrides": [
+    {
+      "files": ["**/*.ts", "**/*.tsx"],
+      "parser": "@typescript-eslint/parser",
+      "settings": {
+        "react": {
+          "version": "detect"
+        }
+      },
+      "env": {
+        "browser": true,
+        "node": true,
+        "es6": true
+      },
+      "plugins": ["import", "unused-imports", "@typescript-eslint"],
+      "extends": [
+        "next/core-web-vitals",
+        "plugin:prettier/recommended",
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:react/recommended",
+        "plugin:react-hooks/recommended",
+        "plugin:import/react",
+        "plugin:import/errors",
+        "plugin:import/warnings",
+        "plugin:import/typescript"
+      ],
+      "rules": {
+        "import/namespace": [
+          "error",
+          {
+            "allowComputed": true
+          }
+        ],
+        "react/prop-types": "off",
+        "react/react-in-jsx-scope": "off",
+        "jsx-a11y/anchor-is-valid": "off",
+        "@typescript-eslint/no-unused-vars": ["error"],
+        "@typescript-eslint/explicit-function-return-type": [
+          "off",
+          {
+            "allowExpressions": true,
+            "allowConciseArrowFunctionExpressionsStartingWithVoid": true
+          }
+        ],
+        "prettier/prettier": [
+          "error",
+          { "endOfLine": "auto" },
+          {
+            "usePrettierrc": true
+          }
+        ],
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "import/no-named-as-default": "off",
+        "import/no-duplicates": "error",
+        "react/destructuring-assignment": "off",
+        "react/require-default-props": "off",
+        "react/jsx-props-no-spreading": "off",
+        "@next/next/no-img-element": "off",
+        "@typescript-eslint/comma-dangle": "off",
+        "import/prefer-default-export": "off",
+        "unused-imports/no-unused-imports": "error",
+        "import/order": [
+          "error",
+          {
+            "groups": ["builtin", "external", "internal"],
+            "pathGroups": [
+              {
+                "pattern": "react",
+                "group": "external",
+                "position": "before"
+              }
+            ],
+            "pathGroupsExcludedImportTypes": ["react"],
+            "newlines-between": "always"
+          }
+        ],
+        "react/display-name": "off",
+        "react/jsx-key": "warn",
+        "@typescript-eslint/ban-types": "warn",
+        "@typescript-eslint/ban-ts-comment": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "react-hooks/exhaustive-deps": "off",
+        "storybook/no-redundant-story-name": "warn",
+        "react/jsx-curly-brace-presence": ["error", { "props": "never" }],
+        "react/no-unescaped-entities": "off"
+      }
+    }
+  ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".ts", ".tsx"],
+        "moduleDirectory": ["node_modules", "src/"]
+      },
+      "typescript": {
+        "alwaysTryTypes": true
+      }
+    }
+  }
+}
