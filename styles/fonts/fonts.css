@@ -5,6 +5,6 @@
 }
 @font-face {
   font-family: MyFont2;
-  src: local(SourceSansPro-Black),
-  url(.//SourceSansPro-Black.ttf) format("truetype");
+  src: local(SansPro-Black),
+  url(.//SansPro-Black.ttf) format("truetype");
 }

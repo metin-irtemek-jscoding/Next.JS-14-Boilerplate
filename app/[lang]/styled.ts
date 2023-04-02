@@ -25,6 +25,7 @@ export const Title = styled.div`
 
 export const Content = styled.div`
   color: ${theme.color.grey800};
+  font-family: 'MyFont1';
   font-size: 18px;
   font-weight: normal;
   margin-bottom: 12px;
