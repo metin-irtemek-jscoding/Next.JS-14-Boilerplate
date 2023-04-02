@@ -1,13 +1,22 @@
 import React from 'react';
 
+import { Lang } from '@/i18n-config';
+import { getTranslate } from '@/i18n-getTranslate';
+
 import { Wrapper, Title, Content } from './styled';
 
-export default function Home() {
+export default async function Home({
+  params: { lang },
+}: {
+  params: { lang: Lang };
+}) {
+  const t = await getTranslate(lang);
   return (
     <Wrapper>
-      <Title>Metin - BoilerPlate</Title>
+      <Title>{t['Metin - BoilerPlate']}</Title>
       <Content>Next 13.2</Content>
       <Content>Typescript</Content>
+      <Content>i18n Multi-Language</Content>
       <Content>Docker File</Content>
       <Content>Styled Component with SSR config</Content>
       <Content>Codegen</Content>
