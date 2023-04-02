@@ -2,6 +2,7 @@
 
 ### Next 13.2
 ### Typescript
+### i18n Multi-Language
 ### Docker File
 ### Styled Component with SSR config
 ### Codegen
