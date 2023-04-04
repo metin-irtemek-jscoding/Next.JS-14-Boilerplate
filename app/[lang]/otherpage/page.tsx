@@ -15,8 +15,8 @@ export default async function Home({
   const t = await getTranslate(lang);
   return (
     <Wrapper>
-      <Title>{t['Main Page']}</Title>
-      <Link href={`/${lang}/otherpage`}>{t['Other Page']}</Link>
+      <Title>{t['Other Page']}</Title>
+      <Link href={`/${lang}`}>{t['Main Page']}</Link>
     </Wrapper>
   );
 }

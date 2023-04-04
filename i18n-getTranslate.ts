@@ -1,10 +1,8 @@
 import 'server-only';
 
-import type { Lang } from './i18n-config';
+import type { Locale } from '@/i18n-config';
+import de from '@/lang/de.json';
+import en from '@/lang/en.json';
 
-const langFile = {
-  en: () => import('./lang/en.json').then((module) => module.default),
-  de: () => import('./lang/de.json').then((module) => module.default),
-};
-
-export const getTranslate = async (locale: Lang) => langFile[locale]();
+const langFile = { de, en };
+export const getTranslate = (lang: Locale) => langFile[lang];

@@ -3,14 +3,14 @@ import acceptLanguage from 'accept-language';
 
 import { i18n } from '@/i18n-config';
 
-acceptLanguage.languages(['en', 'de']);
+acceptLanguage.languages([...i18n.locales]);
 
 export const config = {
   // matcher: '/:lng*'
   matcher: ['/((?!api|_next/static|_next/image|assets|favicon.ico|sw.js).*)'],
 };
 
-const cookieName = 'i18next';
+const cookieName = 'lang';
 
 export function middleware(req: any) {
   let lng;
@@ -21,7 +21,8 @@ export function middleware(req: any) {
 
   if (
     !i18n.locales.some((loc) => req.nextUrl.pathname.startsWith(`/${loc}`)) &&
-    !req.nextUrl.pathname.startsWith('/_next')
+    !req.nextUrl.pathname.startsWith('/_next') &&
+    !req.nextUrl.pathname.startsWith('/images/')
   ) {
     return NextResponse.redirect(
       new URL(`/${lng}${req.nextUrl.pathname}`, req.url),

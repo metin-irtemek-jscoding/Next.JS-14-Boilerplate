@@ -1,8 +1,11 @@
 import type { Metadata } from 'next';
 
 import StyledComponentsRegistry from '@/styles/styledComponentsRegistry';
-import { Lang } from '@/i18n-config';
+import type { Locale } from '@/i18n-config';
+import { i18n } from '@/i18n-config';
 import '@/styles/index.css';
+import Header from '@/components/organisms/header';
+import Footer from '@/components/organisms/footer';
 
 export const metadata: Metadata = {
   title: 'Metin - Boilerplate',
@@ -11,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 export async function generateStaticParams() {
-  return [{ lang: 'en' }, { lang: 'de' }];
+  return i18n.locales.map((language) => ({ lang: language }));
 }
 
 export default function RootLayout({
@@ -19,13 +22,17 @@ export default function RootLayout({
   params: { lang },
 }: {
   children: React.ReactNode;
-  params: { lang: Lang };
+  params: { lang: Locale };
 }) {
   return (
     <html lang={lang}>
-      <head></head>
+      <head>
+        <link rel="icon" href="/favicon.ico" />
+      </head>
       <body>
+        <Header lang={lang} />
         <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+        <Footer lang={lang} />
       </body>
     </html>
   );
