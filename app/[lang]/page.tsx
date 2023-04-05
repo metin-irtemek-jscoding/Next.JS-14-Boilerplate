@@ -7,12 +7,12 @@ import { getTranslate } from '@/i18n-getTranslate';
 
 import { Wrapper, Title } from './styled';
 
-export default async function Home({
+export default function Home({
   params: { lang },
 }: {
   params: { lang: Locale };
 }) {
-  const t = await getTranslate(lang);
+  const t = getTranslate(lang);
   return (
     <Wrapper>
       <Title>{t['Main Page']}</Title>
