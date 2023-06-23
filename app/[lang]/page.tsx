@@ -2,8 +2,8 @@ import React from 'react';
 
 import Link from 'next/link';
 
-import type { Locale } from '@/i18n-config';
-import { getTranslate } from '@/i18n-getTranslate';
+import { Locale } from '@/lang/languages';
+import { getTranslate } from '@/lang/serverSide';
 
 import { Wrapper, Title } from './styled';
 

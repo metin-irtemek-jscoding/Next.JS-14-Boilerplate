@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 
 import StyledComponentsRegistry from '@/styles/styledComponentsRegistry';
-import type { Locale } from '@/i18n-config';
-import { i18n } from '@/i18n-config';
+import { Locale, Languages } from '@/lang/languages';
 import '@/styles/index.css';
 import Header from '@/components/organisms/header';
 import Footer from '@/components/organisms/footer';
@@ -13,8 +12,8 @@ export const metadata: Metadata = {
   viewport: { width: 'device-width', initialScale: 1 },
 };
 
-export async function generateStaticParams() {
-  return i18n.locales.map((language) => ({ lang: language }));
+export function generateStaticParams() {
+  return Languages.locales.map((lang) => ({ lang }));
 }
 
 export default function RootLayout({

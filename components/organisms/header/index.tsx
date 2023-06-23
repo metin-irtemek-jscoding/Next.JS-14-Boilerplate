@@ -1,7 +1,7 @@
 import React from 'react';
 
-import type { Locale } from '@/i18n-config';
-import { getTranslate } from '@/i18n-getTranslate';
+import { Locale } from '@/lang/languages';
+import { getTranslate } from '@/lang/serverSide';
 import LangButton from '@/components/atoms/langButton/langButton';
 
 import { Wrapper, Area } from './styled';

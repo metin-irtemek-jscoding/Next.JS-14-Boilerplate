@@ -1,27 +1,27 @@
 import { NextResponse } from 'next/server';
-import acceptLanguage from 'accept-language';
 
-import { i18n } from '@/i18n-config';
-
-acceptLanguage.languages([...i18n.locales]);
+import { Languages, Locale } from '@/lang/languages';
 
 export const config = {
-  // matcher: '/:lng*'
-  matcher: ['/((?!api|_next/static|_next/image|assets|favicon.ico|sw.js).*)'],
+  matcher: '/:lng*',
 };
 
-const cookieName = 'lang';
+const cookieName = 'i18next';
 
 export function middleware(req: any) {
-  let lng;
+  let lng: Locale = Languages.defaultLocale;
   if (req.cookies.has(cookieName))
-    lng = acceptLanguage.get(req.cookies.get(cookieName).value);
-  if (!lng) lng = acceptLanguage.get(req.headers.get('Accept-Language'));
-  if (!lng) lng = i18n.defaultLocale;
+    lng =
+      req.cookies.get(cookieName).value === Languages.locales[1]
+        ? Languages.locales[1]
+        : Languages.locales[0];
 
   if (
-    !i18n.locales.some((loc) => req.nextUrl.pathname.startsWith(`/${loc}`)) &&
+    !Languages.locales.some((loc) =>
+      req.nextUrl.pathname.startsWith(`/${loc}`),
+    ) &&
     !req.nextUrl.pathname.startsWith('/_next') &&
+    !req.nextUrl.pathname.startsWith('/api/') &&
     !req.nextUrl.pathname.startsWith('/images/')
   ) {
     return NextResponse.redirect(
@@ -30,12 +30,7 @@ export function middleware(req: any) {
   }
 
   if (req.headers.has('referer')) {
-    const refererUrl = new URL(req.headers.get('referer'));
-    const lngInReferer = i18n.locales.find((l) =>
-      refererUrl.pathname.startsWith(`/${l}`),
-    );
     const response = NextResponse.next();
-    if (lngInReferer) response.cookies.set(cookieName, lngInReferer);
     return response;
   }
 
