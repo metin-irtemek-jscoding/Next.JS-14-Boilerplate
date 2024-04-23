@@ -7,7 +7,7 @@ import { getTranslate } from '@/lang/serverSide';
 import { Wrapper, Area } from './styled';
 
 export default function Footer({ lang }: { lang: Locale }) {
-  const t = getTranslate(lang);
+  const t = getTranslate();
   return (
     <Wrapper>
       <Container>

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
-
+import type { Viewport } from 'next';
 import StyledComponentsRegistry from '@/styles/styledComponentsRegistry';
+import AntdProvider from '@/styles/antdProviders';
 import { Locale, Languages } from '@/lang/languages';
 import '@/styles/index.css';
 import Header from '@/components/organisms/header';
@@ -9,7 +10,13 @@ import Footer from '@/components/organisms/footer';
 export const metadata: Metadata = {
   title: 'Metin - Boilerplate',
   description: 'Metin - Boilerplate',
-  viewport: { width: 'device-width', initialScale: 1 },
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export function generateStaticParams() {
@@ -19,19 +26,23 @@ export function generateStaticParams() {
 export default function RootLayout({
   children,
   params: { lang },
-}: {
+}: Readonly<{
   children: React.ReactNode;
   params: { lang: Locale };
-}) {
+}>) {
   return (
     <html lang={lang}>
       <head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel='icon' href='/images/favicon.ico' />
       </head>
       <body>
-        <Header lang={lang} />
-        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
-        <Footer lang={lang} />
+        <AntdProvider>
+          <StyledComponentsRegistry>
+            <Header lang={lang} />
+            {children}
+            <Footer lang={lang} />
+          </StyledComponentsRegistry>
+        </AntdProvider>
       </body>
     </html>
   );

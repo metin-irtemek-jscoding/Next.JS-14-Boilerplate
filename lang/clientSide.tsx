@@ -1,9 +1,8 @@
-'use client';
-import { getCookie } from 'cookies-next';
-
-import en from './locales/en.json';
-import de from './locales/de.json';
-import { Languages, Locale } from './languages';
+"use client";
+import { getCookie } from "cookies-next";
+import en from "./locales/en.json";
+import de from "./locales/de.json";
+import { Languages, Locale } from "./languages";
 
 const dictionaries = {
   en,
@@ -11,16 +10,10 @@ const dictionaries = {
 };
 
 export const getLang = () => {
-  const lang: Locale =
-    getCookie('i18next') === Languages.locales[1]
-      ? Languages.locales[1]
-      : Languages.locales[0];
-
+  const hasLang = Languages.locales.some((item) => item === getCookie("lang"));
+  //@ts-ignore
+  const lang: Locale = hasLang ? getCookie("lang") : Languages.defaultLocale;
   return lang;
 };
 
-export const getTranslate = () => {
-  const lang = getLang();
-
-  return dictionaries[lang];
-};
+export const getTranslate = () => dictionaries[getLang()];

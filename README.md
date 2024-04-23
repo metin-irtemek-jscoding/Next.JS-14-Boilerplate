@@ -1,6 +1,8 @@
-# Metin - BoilerPlate
+# Next.JS 14 - BoilerPlate
 
-### Next 13.4.7
+### Next 14.1.3
+
+### Ant-Design
 
 ### Typescript
 
@@ -23,8 +25,6 @@
 ### Font
 
 ### Utils
-
-### Proxy Server
 
 ### Storybook
 

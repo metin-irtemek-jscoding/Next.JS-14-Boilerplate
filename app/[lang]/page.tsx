@@ -12,7 +12,7 @@ export default function Home({
 }: {
   params: { lang: Locale };
 }) {
-  const t = getTranslate(lang);
+  const t = getTranslate();
   return (
     <Wrapper>
       <Title>{t['Main Page']}</Title>

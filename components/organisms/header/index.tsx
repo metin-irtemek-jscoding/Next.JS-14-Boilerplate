@@ -7,7 +7,7 @@ import LangButton from '@/components/atoms/langButton/langButton';
 import { Wrapper, Area } from './styled';
 
 export default function Header({ lang }: { lang: Locale }) {
-  const t = getTranslate(lang);
+  const t = getTranslate();
   return (
     <Wrapper>
       <Area>

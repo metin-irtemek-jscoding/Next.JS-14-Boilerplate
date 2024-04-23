@@ -1,7 +1,6 @@
 export const Languages = {
-  defaultLocale: 'de',
-  locales: ['de', 'en'],
-  flags: ['/images/langFlag/de.png', '/images/langFlag/en.png'],
+  defaultLocale: "en",
+  locales: ["en", "de"],
 } as const;
 
-export type Locale = typeof Languages['locales'][number];
+export type Locale = (typeof Languages)["locales"][number];

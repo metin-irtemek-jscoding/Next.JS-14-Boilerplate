@@ -1,31 +1,38 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { useRouter } from 'next/navigation';
 import { Select } from 'antd';
+import { setCookie, getCookie } from 'cookies-next';
 
 import { Locale, Languages } from '@/lang/languages';
-
-import { Flag } from './styled';
 
 const { Option } = Select;
 
 export default function LangButton({ lang }: { lang: Locale }) {
   const router = useRouter();
 
-  const handleChange = (value: string) => {
+  useEffect(() => {
+    if (getCookie('lang') !== lang) {
+      setCookie('lang', lang);
+      router.refresh();
+    }
+  }, [lang]);
+
+  const handleLangChange = (lang: Locale) => {
     const getUrl: string =
       (typeof window !== 'undefined' &&
         `${window.location.pathname}${window?.location.search}`) ||
       '';
     const tempUrl: string = getUrl.slice(3);
-    router.push(`/${value}/${tempUrl}`);
+    router.push(`/${lang}${tempUrl}`);
   };
+
   return (
-    <Select style={{ width: 100 }} onChange={handleChange} value={lang}>
+    <Select style={{ width: 100 }} onChange={handleLangChange} value={lang}>
       {Languages.locales.map((lang: string, index: number) => (
         <Option key={index} value={lang}>
-          <Flag image={Languages.flags[index]} />
+          {lang.toUpperCase()}
         </Option>
       ))}
     </Select>
